@@ -626,7 +626,7 @@ const broadcast = (userId, data) => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\S\Desktop\Mobile-Prog\Mobile-Applications\MoviesApp-Ionic\my-node-server-auth\src/index.js */"./src/index.js");
+module.exports = __webpack_require__(/*! C:\Users\S\Desktop\Mobile-Prog\Mobile-Applications\my-node-server-auth\src/index.js */"./src/index.js");
 
 
 /***/ }),
