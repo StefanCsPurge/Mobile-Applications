@@ -461,13 +461,13 @@ class MovieStore {
     if (!movieTitle) {
       // validation
       throw new Error('Missing text property');
-    }
+    } // if (!movieYear) { // validation
+    //   throw new Error('Missing text property')
+    // }
 
-    if (!movieYear) {
-      // validation
-      throw new Error('Missing text property');
-    }
 
+    movie._id = undefined;
+    console.log(movie);
     return this.store.insert(movie);
   }
 

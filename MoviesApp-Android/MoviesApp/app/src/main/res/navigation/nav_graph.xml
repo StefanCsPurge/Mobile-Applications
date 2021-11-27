@@ -3,26 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/MovieListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.mstefanc.moviesapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/FragmentLogin"
+        android:name="com.mstefanc.moviesapp.auth.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/MovieListFragment"
+        android:name="com.mstefanc.moviesapp.moviepack.movies.MovieListFragment"
+        android:label="@string/movie_list_fragment_label"
+        tools:layout="@layout/fragment_movie_list" >
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_MovieListFragment_to_MovieEditFragment"
+            app:destination="@id/MovieEditFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.mstefanc.moviesapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/MovieEditFragment"
+        android:name="com.mstefanc.moviesapp.moviepack.movie.MovieEditFragment"
+        android:label="@string/movie_edit_fragment_label"
+        tools:layout="@layout/fragment_movie_edit" >
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_MovieEditFragment_to_MovieListFragment"
+            app:destination="@id/MovieListFragment" />
     </fragment>
 </navigation>
