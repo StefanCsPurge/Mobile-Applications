@@ -9,9 +9,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import androidx.work.impl.constraints.NetworkState
 import com.mstefanc.moviesapp.auth.data.AuthRepository
 import com.mstefanc.moviesapp.core.TAG
 import com.mstefanc.moviesapp.databinding.ActivityMainBinding
+import com.mstefanc.moviesapp.moviepack.data.workers.NotificationWorker
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        startNotificationJob()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -63,5 +71,27 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private fun startNotificationJob() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.METERED)
+            .build()
+
+        val theWork = OneTimeWorkRequest.Builder(NotificationWorker::class.java)
+            .setConstraints(constraints)
+            .build()
+        val workId = theWork.id
+        WorkManager.getInstance(this).apply {
+            // enqueue Work
+            enqueue(theWork)
+            // observe work status
+            getWorkInfoByIdLiveData(workId)
+                .observe(this@MainActivity, { status ->
+                    val isFinished = status?.state?.isFinished
+                    Log.d(TAG, "Job $workId; finished: $isFinished")
+                })
+        }
+
     }
 }
