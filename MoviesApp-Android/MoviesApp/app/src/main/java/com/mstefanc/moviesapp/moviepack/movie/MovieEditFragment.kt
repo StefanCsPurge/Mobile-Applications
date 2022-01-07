@@ -1,5 +1,6 @@
 package com.mstefanc.moviesapp.moviepack.movie
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.mstefanc.moviesapp.R
 import com.mstefanc.moviesapp.core.TAG
 import com.mstefanc.moviesapp.databinding.FragmentMovieEditBinding
 import com.mstefanc.moviesapp.moviepack.data.Movie
@@ -59,7 +61,12 @@ class MovieEditFragment: Fragment() {
             if (m != null)
                 viewModel.deleteMovie(m)
         }
+
+        binding.fabDown.setOnClickListener{
+            changeViewPositionByObjectAnimator()
+        }
         // binding.movieTitle.setText(movieId)
+
     }
 
     override fun onDestroyView() {
@@ -87,7 +94,7 @@ class MovieEditFragment: Fragment() {
         viewModel.completed.observe(viewLifecycleOwner, { completed ->
             if (completed) {
                 Log.v(TAG, "completed, navigate back")
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_MovieEditFragment_to_MovieListFragment)
             }
         })
 
@@ -103,6 +110,13 @@ class MovieEditFragment: Fragment() {
                     binding.movieYear.setText(it.year.toString())
                 }
             })
+        }
+    }
+
+    private fun changeViewPositionByObjectAnimator() {
+        ObjectAnimator.ofFloat(view, "translationY", 222f).apply {
+            duration = 2000
+            start()
         }
     }
 }

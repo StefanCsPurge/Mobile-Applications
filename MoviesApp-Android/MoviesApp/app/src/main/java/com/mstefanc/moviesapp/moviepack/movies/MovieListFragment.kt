@@ -38,7 +38,7 @@ class MovieListFragment : Fragment(){
         setupMovieList()
         binding.fab.setOnClickListener {
             Log.v(TAG, "add new movie")
-            findNavController().navigate(R.id.MovieEditFragment)
+            findNavController().navigate(R.id.action_MovieListFragment_to_MovieEditFragment)
         }
     }
 

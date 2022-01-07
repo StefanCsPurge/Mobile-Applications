@@ -1,5 +1,10 @@
 package com.mstefanc.moviesapp
 
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -13,20 +18,23 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import androidx.work.impl.constraints.NetworkState
 import com.mstefanc.moviesapp.auth.data.AuthRepository
 import com.mstefanc.moviesapp.core.TAG
 import com.mstefanc.moviesapp.databinding.ActivityMainBinding
 import com.mstefanc.moviesapp.moviepack.data.workers.NotificationWorker
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var sensorManager: SensorManager
+    private var light: Sensor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        showAllSensors()
+        light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
         startNotificationJob()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -93,5 +101,39 @@ class MainActivity : AppCompatActivity() {
                 })
         }
 
+    }
+
+    /// SENSORS testing section ///
+
+    private fun showAllSensors() {
+        val deviceSensors: List<Sensor> = sensorManager.getSensorList(Sensor.TYPE_ALL)
+        Log.d(TAG, "showAllSensors");
+        deviceSensors.forEach {
+            Log.d(TAG, it.name + " " + it.vendor + " " + it.version);
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        Log.d(TAG, "onAccuracyChanged $accuracy");
+    }
+
+    override fun onSensorChanged(event: SensorEvent) {
+        // The light sensor returns a single value.
+        // Many sensors return 3 values, one for each axis.
+        val lux = event.values[0]
+        // Do something with this sensor value.
+        Log.d(TAG, "onSensorChanged $lux");
+    }
+
+    override fun onResume() {
+        super.onResume()
+        light?.also {
+            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this)
     }
 }

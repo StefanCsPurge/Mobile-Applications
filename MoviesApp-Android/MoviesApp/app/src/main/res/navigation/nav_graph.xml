@@ -19,7 +19,11 @@
 
         <action
             android:id="@+id/action_MovieListFragment_to_MovieEditFragment"
-            app:destination="@id/MovieEditFragment" />
+            app:destination="@id/MovieEditFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 
     <fragment
@@ -30,6 +34,10 @@
 
         <action
             android:id="@+id/action_MovieEditFragment_to_MovieListFragment"
-            app:destination="@id/MovieListFragment" />
+            app:destination="@id/MovieListFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 </navigation>
