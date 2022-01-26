@@ -1,0 +1,7 @@
+{
+  "name": "ex1-messages",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
