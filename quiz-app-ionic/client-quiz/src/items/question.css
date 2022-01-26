@@ -1,0 +1,8 @@
+
+.selectedGood{
+    --ion-item-background: grey;
+}
+
+.selectedShit{
+    --ion-item-background: red;
+}
