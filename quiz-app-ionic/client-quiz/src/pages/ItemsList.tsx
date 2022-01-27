@@ -3,7 +3,7 @@ import {
 } from '@ionic/react';
 import { ItemContext } from '../items/ItemProvider';
 import './Home.css';
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import ItemComp from "../items/ItemComp";
 import { RouteComponentProps } from 'react-router';
 import {Storage} from "@capacitor/storage";
@@ -12,6 +12,8 @@ import {Storage} from "@capacitor/storage";
 const ItemsList: React.FC<RouteComponentProps> = ({ history }) => {
     const { items, setToken } = useContext(ItemContext);
     const [crtQ, setCrtQ] = useState(0);
+    const crtQRef = useRef(crtQ);
+    crtQRef.current = crtQ;
     const [correctA, setCorrectA] = useState(0);
 
     useEffect(() => {
@@ -22,10 +24,8 @@ const ItemsList: React.FC<RouteComponentProps> = ({ history }) => {
             });
             else setToken && setToken(v.value);
         });
-        setTimeout(() => items && crtQ<items.length && setCrtQ(crtQ+1), 5000);
     }, []);
-
-    //let time = setTimeout(() => items && crtQ<items.length && setCrtQ(crtQ+1), 5000);
+    const t = setTimeout(() => items && crtQ<items.length && crtQRef.current == crtQ && setCrtQ(crtQ+1), 5000);
 
     return (
         <IonPage>
@@ -55,7 +55,8 @@ const ItemsList: React.FC<RouteComponentProps> = ({ history }) => {
                                                           indexCorrectOption={items[crtQ].indexCorrectOption}
                                                           buttonText={'Next question'} compFn={(answer) => {
                                                               answer && setCorrectA(correctA+1);
-                                                              setCrtQ(crtQ+1);
+                                                              clearTimeout(t);
+                                                              setCrtQ((oldQ) => oldQ + 1);
                                                           }
                                                           }/>
                                     </div>

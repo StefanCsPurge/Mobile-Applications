@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,8 +74,8 @@ module.exports =
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator__);
 
 
 var _this = this;
@@ -84,22 +84,22 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var Koa = __webpack_require__(3);
+var Koa = __webpack_require__(2);
 var app = new Koa();
-var server = __webpack_require__(2).createServer(app.callback());
-var WebSocket = __webpack_require__(8);
+var server = __webpack_require__(1).createServer(app.callback());
+var WebSocket = __webpack_require__(6);
 var wss = new WebSocket.Server({ server: server });
-var Router = __webpack_require__(6);
-var cors = __webpack_require__(5);
-var bodyparser = __webpack_require__(4);
+var Router = __webpack_require__(5);
+var cors = __webpack_require__(4);
+var bodyparser = __webpack_require__(3);
 
 app.use(bodyparser());
 app.use(cors());
 
 app.use(function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
     var start, ms;
-    return __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -139,8 +139,8 @@ var questions = [].concat(_toConsumableArray(Array(3).keys())).map(function (i) 
 });
 
 app.use(function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
-    return __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_exam_prep_ex2_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+    return __WEBPACK_IMPORTED_MODULE_0_C_Users_S_Desktop_Mobile_Prog_Mobile_Applications_quiz_app_ionic_server_quiz_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -213,60 +213,61 @@ server.listen(3000);
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(7);
-
-
-/***/ },
-/* 2 */
 /***/ function(module, exports) {
 
 module.exports = require("http");
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 module.exports = require("koa");
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 module.exports = require("koa-cors");
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports) {
 
 module.exports = require("koa-router");
 
 /***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-module.exports = require("regenerator-runtime");
-
-/***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports) {
 
 module.exports = require("ws");
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(0);
 
 
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(9);
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+module.exports = require("regenerator-runtime");
+
 /***/ }
 /******/ ]);
+//# sourceMappingURL=main.map});
 //# sourceMappingURL=main.map
